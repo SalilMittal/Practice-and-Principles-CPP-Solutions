@@ -15,26 +15,30 @@ vector<int> primes(int max) {
     
     int size = v.size();
     int p = 2;
+    
     for(int i = 0; i < size; i++) {
         // p 2p 3p 4p .. max
-        for(int j = 2; j*p <= max; j++) {
-            // Erase multiples
-            v.erase(std::remove(v.begin(), v.end(), j*p), v.end());
+        // Erase multiples
+        for(int j = 2; j*p <= max; j++) v.erase(std::remove(v.begin(), v.end(), j*p), v.end());
+    
+        // Find the smallest number in the list greater than p that is not marked. If there was no such number, stop
+        bool set = false;
+        for(int k = 0; k < v.size(); k++) {
+            if(v[k] > p) {
+                p = v[k];
+                set = true;
+                break;
+            }
         }
-
-        if(v.size() > 1) {
-            p = v[1];
-        } else {
-            break;
-        }
+        
+        if(!set) break;
     }
 
     return v;
 }
 
+// 2 3 4/ 5 6/ 7 8/ 9/ 10/
 int main() {
-    int max;
-    cin >> max;
-    vector<int> result = primes(max);
+    vector<int> result = primes(100);
     for(int x : result) cout << x << " ";
 }
