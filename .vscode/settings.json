@@ -2,6 +2,7 @@
     "files.associations": {
         "cmath": "cpp",
         "vector": "cpp",
-        "stdexcept": "cpp"
+        "stdexcept": "cpp",
+        "limits": "cpp"
     }
 }

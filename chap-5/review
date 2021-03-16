@@ -1,1 +1,140 @@
 1. Name four major types of errors and briefly define each one.
+    Compile time: Found by compiler (syntax and type errors)
+    Link Time: Found by linker when combining object files to executable
+    Runtime Errors: Errors found by checks in a running program 
+    Logic errors: Found by programmer due to erroneous results
+
+2. What kinds of errors can we ignore in student programs?
+    Hardware, system software, termination errors
+
+3. What guarantees should every completed project offer?
+    1. Should produce the desired results for all legal inputs
+    2. Should give reasonable error messages for all illegal inputs
+    3. Need not worry about misbehaving hardware
+    4. Need not worry about misbehaving system software
+    5. Is allowed to terminate after finding an error
+
+4. List three approaches we can take to eliminate errors in programs and
+produce acceptable software.
+    - Organisation to minimize errors
+    - Elimination by debugging and testing 
+    - Lack of serious errors
+
+5. Why do we hate debugging?
+    Very time consuming :p 
+
+6. What is a syntax error? Give five examples
+    Not well formed according to C++ grammar. Rejected by compiler
+        int s1 = area(7; // error: ) missing
+        int s2 = area(7) // error: ; missing
+        Int s3 = area(7); // error: Int is not a type
+        int s4 = area('7); // error: non-terminated character (' missing)
+
+7. What is a type error? Give five examples.
+    Compiler reports error of mismatched types in variables, functions, function arguments etc
+        int x0 = arena(7); // error: undeclared function
+        int x1 = area(7); // error: wrong number of arguments
+        int x2 = area("seven",2); // error: 1st argument has a wrong type
+        int x3 = "string"; //invalid conversion from 'const char*' to 'int'
+        string str = 123 // error: conversion from 'int' to non-scalar type 'std::string'
+
+8. What is a linker error? Give three examples.
+    Found by linker when combining object files to executable
+    - Undefined function
+    - Wrong types
+    - ..
+
+9. What is a logic error? Give three examples.
+    Found by programmer due to erroneous results
+        Not checking D < 0 in quadratic solver
+        Not checking for negative values for area
+        Not setting max and min for temperature program
+
+10. List four potential sources of program errors discussed in the text.
+    Poor Specification: not specific about what a program should do prevents all
+        cases from being examined
+    Incomplete programs: Lack of handling all cases yields program Incomplete
+    Unexpected Arguments: Passing incorrect arguments to a function
+    Unexpected Input: Not handling cases of invalid user inputs
+
+11. How do you know if a result is plausible? What techniques do you
+have to answer such questions?
+    Estimating using common sense or calculating plausible results on a sheet of paper
+
+12. Compare and contrast having the caller of a function handle a runtime error vs. the called function’s handling the run-time error.
+    Caller: 
+        int area(int l, int w);
+
+        int main() {
+            cin >> x;
+            cin >> y;
+            if(x <= 0 || y <= 0) throw runtime_error("Enter +ve l and w");
+            cout << area(x, y);
+        }    
+    
+    Callee:
+        int area(int l, int w) {
+            if(x <= 0 || y <= 0) throw runtime_error("Enter +ve l and w");
+            return l*w;
+        } 
+
+        int main() {
+            cin >> x;
+            cin >> y;
+            cout << area(x, y);
+        }
+
+13. Why is using exceptions a better idea than returning an “error
+value”?
+    We dont always have an erroneous value such as -1 to return as an "error" value
+
+14. How do you test if an input operation succeeded?
+    if(cin) // after cin >>
+
+15. Describe the process of how exceptions are thrown and caught.
+    If a function does not return a normal value it throws an exception
+    A direct or indirect caller can catch this exception using try-catch block
+    If its not caught program terminates
+
+16. Why, with a vector called v, is v[v.size()] a range error? What
+would be the result of calling this?
+    Vectors start at 0 so last index will be v.size() - 1
+    An out_of_range exception is thrown
+
+17. Define pre-condition and post-condition; give an example (that is not
+the area() function from this chapter), preferably a computation that
+requires a loop.
+    Precondition: Requirement which must be true for function to continue its action
+    Post Condition: Check if return value is valid
+    Eg:
+
+    int avg_incomes(vector<int> v) {
+        if(v.size() ==  0) throw runtime_error("Empty Vector");
+
+        double sum = 0;
+        for(int x : v) {
+            if(x < 0) throw runtime_error("Negative Income");
+            sum += x;
+        }
+        double avg = sum / v.size();
+        if(avg < 0) throw runtime_error("Negative Income average");
+        return avg; 
+    }
+
+18. When would you not test a pre-condition?
+    The check is unnecessarily complicated
+
+19. When would you not test a post-condition?
+    Assumes inputs valid and continues erroneous operations
+
+20. What are the steps in debugging a program?
+    1. Get the program to compile.
+    2. Get the program to link.
+    3. Get the program to do what it is supposed to do.
+
+21. Why does commenting help when debugging?
+    Articulates purpose of function or expression for usage
+
+22. How does testing differ from debugging?
+    Testing is executing a program with numerous inputs (test cases) to ensure its validity
+    Debugging involves above 3 steps in q21.
