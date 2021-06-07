@@ -162,7 +162,9 @@ protected:
     void set_point(int i,Point p);     // points[i]=p;
 private:
     vector<Point> points;              // not used by all shapes
-    Color lcolor {static_cast<int>(fl_color())};// color for lines and characters (with default)
+    // Modified
+    // Color lcolor {static_cast<int>(fl_color())};// color for lines and characters (with default)
+    Color lcolor {Color::black};// color for lines and characters (with default)
     Line_style ls {0}; 
     Color fcolor {Color::invisible};   // fill color
 };
