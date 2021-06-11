@@ -1,0 +1,102 @@
+1. Why don’t we “just” use a commercial or open-source graphics library
+directly?
+    Reduce complexity of GUI library
+    Make interfaces portable with other libraries
+    Learn Graphics Concepts
+
+2. About how many classes from our graphics interface library do you
+need to do simple graphics output?
+    2 Dozen
+
+3. What are the header files needed to use the graphics interface library?
+    fltk.h
+    Graph.h 
+    GUI.h
+    Point.h
+    Window.h
+
+4. What classes define closed shapes?
+    Closed_polyline
+    Polygon
+    Rectangle
+    Circle
+    Ellipse
+
+5. Why don’t we just use Line for every shape?
+    Provide simple implementation by specifying only vertices
+
+6. What do the arguments to Point indicate?
+    x and y coordinates on canvas
+
+7. What are the components of Line_style?
+    Line style type
+    Width
+
+8. What are the components of Color?
+    Color type
+    visibility
+
+9. What is RGB?
+    A color model used to describe colors as frequencies of Red Green and Blue
+
+10. What are the differences between two Lines and a Lines containing
+two lines?
+    Two lines are two independent objects having a start and end coordinate for the line
+    Lines object contains collection of ``Line``s object defined by pairs
+
+11. What properties can you set for every Shape?
+    Points
+    Color
+    Fill Color
+    Line style
+    Move
+
+12. How many sides does a Closed_polyline defined by five Points
+have?
+    6
+
+13. What do you see if you define a Shape but don’t attach it to a
+Window?
+    Nothing
+
+14. How does a Rectangle differ from a Polygon with four Points
+(corners)?
+    90deg angles
+    equal diagonals
+    Opposite sides equal
+
+15. How does a Polygon differ from a Closed_polyline?
+    Polygon does not allow lines to cross
+
+16. What’s on top: fill or outline?
+    outline
+
+17. Why didn’t we bother defining a Triangle class (after all, we did
+define Rectangle)?
+    Rectangles are more common on screens and coordinate systems
+
+18.  How do you move a Shape to another place in a Window?
+    move() function
+
+19. How do you label a Shape with a line of text?
+    Insert Text Object inside it
+
+20. What properties can you set for a text string in a Text
+    Color Font Size Point
+
+21. What is a font and why do we care?
+    Style of text. Readability on screen
+
+22. What is Vector_ref for and how do we use it?
+    Store named and unnamed elements
+
+23. What is the difference between a Circle and an Ellipse?
+    Circle has constant radius
+    Ellipse has major and minor axis
+
+24. What happens if you try to display an Image given a file name that
+doesn’t refer to a file containing an image?
+    It shows a bad image
+
+25. How do you display part of an image?
+    set_mask()

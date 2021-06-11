@@ -7,10 +7,9 @@
 
 const double PI = atan(1) * 4;
 
+// return sign of number 1/0/-1
 int sgn(double x) {
-	if (x > 0) return 1;
-	else if (x < 0) return -1;
-	else return 0;
+	return abs(x) / ((x == 0) ? 1 : x);
 }
 
 int main() {
@@ -21,8 +20,10 @@ int main() {
 
 		int a = 300;
 		int b = 200;
-		double n = 0.65;
-		int N = 10; // no of points
+		double n = 0.5;
+
+		int N = 14; // no of points
+		//const int base_set = 100;
 
 		int start_x = 300;
 		int start_y = 200;
